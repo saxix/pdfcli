@@ -5,7 +5,7 @@ python:
   - 3.7
 
 before_install:
-  - pip install tox
+  - pip install tox poetry
 
 script:
   - tox -e "py${TRAVIS_PYTHON_VERSION//.}" -- py.test tests -v
