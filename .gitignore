@@ -1,6 +1,7 @@
 .*
 ~*
 !.gitignore
+!.travis.yml
 dist/
 src/pdf_cli.egg-info
 *.pyc

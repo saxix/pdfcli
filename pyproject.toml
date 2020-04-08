@@ -2,11 +2,10 @@
 name = "pdf-cli"
 version = "0.1.0"
 description = "command line pdf tools"
-authors = ["Stefano Apostolico"]
+authors = ["Stefano Apostolico <s.apostolico@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-#repository = "https://github.com/hackersandslackers/python-poetry-tutorial/"
-#documentation = "https://hackersandslackers.com/python-poetry/"
+repository = "https://github.com/saxix/pdfcli.git"
 keywords = ["pdf",]
 packages = [
     { include = "pdf_cli", from="src" },
