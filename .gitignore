@@ -1,0 +1,7 @@
+.*
+~*
+!.gitignore
+dist/
+src/pdf_cli.egg-info
+*.pyc
+
