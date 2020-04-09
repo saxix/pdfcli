@@ -9,7 +9,11 @@ from pdf_cli.main import main
 @click.argument('input', type=click.File('rb'))
 @click.option('-v', '--verbosity', type=int, default=0)
 def info(input, verbosity, **kwargs):
-    """dump pdf informations."""
+    """dump pdf informations.
+
+pdfcli info source.pdf
+
+"""
 
     pdf = PdfFileReader(input)
     information = pdf.getDocumentInfo()

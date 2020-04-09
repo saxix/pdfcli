@@ -14,7 +14,11 @@ from pdf_cli.main import main
 @click.option('-v', '--verbosity', type=int, default=0)
 @click.pass_context
 def join(ctx, inputs, output, verbosity, **kwargs):
-    "join multiple pdf together in a single file"
+    """join multiple pdf together in a single file.
+
+pdfcli join files*.pdf -o joined.pdf
+
+"""
     if not inputs:
         click.echo("No input files")
         ctx.exit(1)

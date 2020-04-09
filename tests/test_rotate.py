@@ -8,10 +8,10 @@ from pdf_cli.main import main
 
 @pytest.mark.parametrize("pages", ['1', '1-2', '1,2'])
 @pytest.mark.parametrize("verbosity", [0, 1,2])
-def test_extract_all(verbosity, pages):
+def test_rotate_selection(verbosity, pages):
     runner = CliRunner()
     with runner.isolated_filesystem() as dir:
-        result = runner.invoke(main, ['extract',
+        result = runner.invoke(main, ['rotate',
                                       str(Path(__file__).parent / 'data/sample.pdf'),
                                       '-v', verbosity,
                                       '-p', pages,
@@ -20,11 +20,11 @@ def test_extract_all(verbosity, pages):
         assert (Path(dir) / 'output.pdf').exists()
 
 
-@pytest.mark.parametrize("verbosity", [0, 1, 2])
-def test_join_no_glob(verbosity):
+@pytest.mark.parametrize("verbosity", [0, 1,2])
+def test_rotate_all(verbosity):
     runner = CliRunner()
     with runner.isolated_filesystem() as dir:
-        result = runner.invoke(main, ['extract',
+        result = runner.invoke(main, ['rotate',
                                       str(Path(__file__).parent / 'data/sample.pdf'),
                                       '-v', verbosity,
                                       '-o', 'output.pdf'])

@@ -9,7 +9,8 @@ from pdf_cli.main import main
 def test_split_all(verbosity):
     runner = CliRunner()
     with runner.isolated_filesystem() as dir:
-        result = runner.invoke(main, ['split', str(Path(__file__).parent / 'data/sample.pdf'),
+        result = runner.invoke(main, ['split',
+                                      str(Path(__file__).parent / 'data/sample.pdf'),
                                       '-v', verbosity,
                                       ])
         assert not (Path(dir) / 'page-00.pdf').exists()

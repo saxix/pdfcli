@@ -14,7 +14,11 @@ from pdf_cli.main import main
 @click.option('-d', '--destination', type=click.Path(exists=False), default='.')
 @click.option('-v', '--verbosity', type=int, default=0)
 def split(input, destination, pages, format, verbosity, **kwargs):
-    """split pdf into single page file"""
+    """split pdf into single page file.
+
+pdfcli split document.pdf --format page-%02d.pd -p 1,10-20
+
+"""
     source = PdfFileReader(input)
     if pages is None:
         pages = range(1, source.numPages+1)

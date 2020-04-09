@@ -6,6 +6,5 @@ def main():
 
 from . import commands
 
-
 if __name__ == "__main__":
     main()

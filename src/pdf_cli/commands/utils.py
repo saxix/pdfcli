@@ -16,7 +16,7 @@ class RangeParamType(click.ParamType):
                 else:
                     selection.append(int(r))
             return selection
-        except (TypeError, ValueError) as e:
+        except (TypeError, ValueError) as e:  # pragma: no cover
             self.fail(
                 "invalid range format: uses from-to,page,from-to "
                 f"{e!r} of type {type(e).__name__}",

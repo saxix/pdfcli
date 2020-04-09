@@ -8,31 +8,33 @@ from pdf_cli.main import main
 
 
 @main.command()
-@click.option('-p', '--pages', default=None, type=Range, help='starting page to extract')
 @click.argument('input', type=click.File('rb'))
+@click.option('-p', '--pages', default=None, type=Range, help='starting page to extract')
 @click.option('-o', '--output', type=click.File('wb'), required=True)
 @click.option('-v', '--verbosity', type=int, default=0)
-def extract(input, output, pages, verbosity, **kwargs):
-    """extract one or multiple pages and build a new document.
+@click.option('-r', '--rotate', type=click.Choice(['left', 'right', 'inverted']), default="left")
+def rotate(input, output, pages, verbosity, rotate, **kwargs):
+    """rotate selected pages
 
-pdfcli extract source.pdf -o clear.pdf -p 1,3-5
-
-
+Rotate selected pages and outputs in new pdf
 """
     source = PdfFileReader(input)
 
+    angle = {'left':-90, 'right':90, 'inverted': 180}[rotate]
     if pages is None:
         pages = range(1, source.numPages)
 
     selection = []
-    for page_num in pages:
+    for page_num in range(1, source.getNumPages()):
         real_page = page_num - 1
         if verbosity >= 1:
             click.echo(".", nl=False)
         if verbosity >= 2:
             click.echo("Extracting page %s" % page_num)
-
-        selection.append(source.getPage(real_page))
+        page = source.getPage(real_page)
+        if page_num in pages:
+            page._rotate(angle)
+        selection.append(page)
 
     output_pdf = PdfFileWriter()
     for page in selection:
