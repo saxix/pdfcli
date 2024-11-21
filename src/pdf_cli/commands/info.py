@@ -21,10 +21,11 @@ pdfcli info source.pdf
 
     txt = f"""
  Filename: {input.name}
- Author: {information.author}
- Creator: {information.creator}
- Producer: {information.producer}
- Subject: {information.subject}
- Title: {information.title}
+ Author: {getattr(information, "author","")}
+ Creator: {getattr(information, "creator", "")}
+ Producer: {getattr(information, "producer", "")}
+ Subject: {getattr(information, "subject", "")}
+ Title: {getattr(information, "title", "")}
  Number of pages: {number_of_pages}"""
+ 
     print(txt)
