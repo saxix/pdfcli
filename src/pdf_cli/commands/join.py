@@ -1,43 +1,31 @@
-import glob
-import sys
-from pathlib import Path
+from typing import Any
 
 import click
-from PyPDF4 import PdfFileReader, PdfFileWriter
+from pypdf import PdfReader, PdfWriter
 
 from pdf_cli.main import main
 
 
 @main.command()
-@click.argument('inputs', nargs=-1)
-@click.option('-o', '--output', type=click.File('wb'), required=True)
-@click.option('-v', '--verbosity', type=int, default=0)
-@click.pass_context
-def join(ctx, inputs, output, verbosity, **kwargs):
+@click.argument("inputs", nargs=-1, type=click.Path(exists=True))
+@click.option("-o", "--output", type=click.File("wb"), required=True)
+@click.option("-v", "--verbosity", type=int, default=0)
+def join(inputs: list[str], output: click.File, verbosity: int, **kwargs: Any) -> None:  # noqa: ARG001
     """join multiple pdf together in a single file.
 
-pdfcli join files*.pdf -o joined.pdf
+    pdfcli join files*.pdf -o joined.pdf
 
-"""
-    if not inputs:
-        click.echo("No input files")
-        ctx.exit(1)
+    """
 
-    for input in inputs:
-        if not Path(input).exists():
-            if verbosity >= 1:
-                click.echo("File not found '%s'" % input, err=True)
-                ctx.exit(1)
+    out = PdfWriter()
 
-    out = PdfFileWriter()
-
-    for input in inputs:
-        source = PdfFileReader(input)
+    for input_file in inputs:
+        source = PdfReader(input_file)
         if verbosity >= 1:
-            click.echo("Adding %s" % input)
-        for page_num in range(0, source.numPages):
-            out.addPage(source.getPage(page_num))
+            click.echo(f"Adding {input_file}")
+        for page_num in range(len(source.pages)):
+            out.add_page(source.pages[page_num])
 
-    out.write(output)
+    out.write(output)  # type: ignore[arg-type]
     if verbosity >= 1:
-        click.echo("Writing %s" % output.name)
+        click.echo(f"Writing {output.name}")

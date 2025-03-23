@@ -1,8 +1,8 @@
-import glob
 from pathlib import Path
 
 import pytest
 from click.testing import CliRunner
+
 from pdf_cli.main import main
 
 
@@ -10,21 +10,38 @@ from pdf_cli.main import main
 def test_encryption_all(verbosity):
     runner = CliRunner()
     with runner.isolated_filesystem() as dir:
-        result = runner.invoke(main, ['encrypt',
-                                      str(Path(__file__).parent / 'data/sample.pdf'),
-                                      '-p', 'password',
-                                      '-v', verbosity,
-                                      '-o', 'encrypted.pdf'])
+        result = runner.invoke(
+            main,
+            [
+                "encrypt",
+                str(Path(__file__).parent / "data/sample.pdf"),
+                "-p",
+                "password",
+                "-v",
+                verbosity,
+                "-o",
+                "encrypted.pdf",
+            ],
+        )
         assert result.exit_code == 0, result.output
-        assert (Path(dir) / 'encrypted.pdf').exists()
+        assert (Path(dir) / "encrypted.pdf").exists()
 
-        result = runner.invoke(main, ['decrypt',
-                                      'encrypted.pdf',
-                                      '-p', 'password',
-                                      '-v', verbosity,
-                                      '-o', 'decrypted.pdf'])
+        result = runner.invoke(
+            main,
+            [
+                "decrypt",
+                "encrypted.pdf",
+                "-p",
+                "password",
+                "-v",
+                verbosity,
+                "-o",
+                "decrypted.pdf",
+            ],
+        )
         assert result.exit_code == 0, result.output
-        assert (Path(dir) / 'decrypted.pdf').exists()
+        assert (Path(dir) / "decrypted.pdf").exists()
+
 
 # @pytest.mark.parametrize("verbosity", [0, 1])
 # def test_join_no_glob(verbosity):

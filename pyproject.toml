@@ -1,33 +1,141 @@
-[tool.poetry]
+[build-system]
+build-backend = "hatchling.build"
+requires = [
+  "hatch-vcs>=0.4",
+  "hatchling>=1.25",
+]
+
+[project]
 name = "pdf-cli"
 version = "0.2.0"
 description = "command line pdf tools"
-authors = ["Stefano Apostolico <s.apostolico@gmail.com>"]
-license = "MIT"
 readme = "README.md"
-repository = "https://github.com/saxix/pdfcli.git"
-keywords = ["pdf",]
-packages = [
-    { include = "pdf_cli", from="src" },
+keywords = [ "pdf" ]
+requires-python = ">3.9"
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+  "click",
+  "cryptography>=3.1",
+  "pypdf",
+  "pytesseract>=0.3.13",
+  "tesseract>=0.1.3",
 ]
 
-[tool.poetry.scripts]
-pdfcli = "pdf_cli.main:main"
+urls.CI = "https://github.com/saxix/pdfcli/actions"
+urls.Homepage = "https://github.com/saxix/pdfcli"
+urls.Issues = "https://github.com/saxix/pdfcli/issues"
+scripts.pdf = "pdf_cli.main:main"
 
-[tool.poetry.dependencies]
-python = ">3.6"
-click = "^7.1.1"
-pyPdf4 = "^1.27.0"
+[dependency-groups]
+dev = [
+  "mypy>=1.15",
+  "pdbpp",
+  "pre-commit>=4.2",
+  "pytest",
+  "pytest-coverage",
+  "ruff>=0.11",
+  "tox",
+]
 
+[tool.hatch]
+build.hooks.vcs.version-file = "src/pdf_cli/version.py"
+version.source = "vcs"
+raw-options = { root = "../.." }
 
-[tool.poetry.dev-dependencies]
-pdbpp = "^0.10.2"
-tox = "^3.14.6"
-pytest = "^5.4.1"
-pytest-coverage = "^0.0"
-bump2version = "^1.0.0"
+[tool.hatch.build.targets.sdist]
+ignore-vcs = true
+include = [
+  "src/pdf_cli/**/*.*",
+]
 
+[tool.hatch.build.targets.wheel]
+packages = [ "src/pdf_cli" ]
 
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+exclude = [
+  "docs",
+  "manage.py",
+  "tests",
+]
+format.preview = true
+format.docstring-code-line-length = 120
+format.docstring-code-format = true
+lint.select = [
+  "ALL",
+]
+lint.ignore = [
+  "ANN401",  #  Dynamically typed expressions
+  "COM812",
+  "CPY",     # Missing copyright notice
+  "D",       # docstring
+  "DOC",     # docstring
+  "E731",    #  Do not assign a `lambda` expression,
+  "EM101",   #  Exception must not use a string literal, assign to variable first
+  "EM102",   #  Exception must not use a f-string literal, assign to variable first
+  "FBT001",  #  Boolean-typed positional argument in function definition
+  "FBT002",  #  Boolean default positional argument in function definition
+  "N806",    #  Variable `...` in function should be lowercase
+  "PLR2004", #  Magic value used in comparison
+  "S308",    # Use of `mark_safe` may expose cross-site scripting vulnerabilities
+  "SLF001",  #  Private member accessed: `...`
+  "TRY003",  # Avoid specifying long messages outside the exception class
+  "TRY301",  # Abstract `raise` to an inner function
+  "TRY401",  #  Redundant exception object included in `logging.exception` call
+  "UP037",   #
+]
+lint.per-file-ignores."docs/conf.py" = [
+  "A001",   #
+  "D100",   #
+  "ERA001", #
+  "INP001", #
+]
+lint.per-file-ignores."src/pdf_cli/version.py" = [
+  "ALL",
+]
+lint.per-file-ignores."tests/**/*.py" = [
+  "A",
+  "ANN",
+  "ARG",
+  "B",
+  "D",
+  "DJ",
+  "DTZ",
+  "ERA",
+  "F",
+  "FBT",
+  "INP",
+  "N",
+  "PGH",
+  "PLC",
+  "PLR",
+  "PLW",
+  "PT",
+  "PTH",
+  "PYI",
+  "RUF",
+  "S",
+  "SIM",
+  "TC",
+  "UP",
+]
+lint.isort = { known-first-party = [ "pytest_echo" ] }
+lint.pylint.max-args = 7
+lint.pylint.max-branches = 14
+lint.pylint.max-nested-blocks = 8
+lint.preview = true
+
+[[tool.mypy.overrides]]
+module = [ "pytesseract.*" ]
+#follow_untyped_imports = false
+ignore_missing_imports = true
+
+[tool.uv]
+package = true

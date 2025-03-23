@@ -2,17 +2,28 @@ from pathlib import Path
 
 import pytest
 from click.testing import CliRunner
+
 from pdf_cli.main import main
 
 
 @pytest.mark.parametrize("verbosity", [0, 1])
 def test_info(verbosity):
     runner = CliRunner()
-    with runner.isolated_filesystem() as dir:
-        result = runner.invoke(main, ['info', str(Path(__file__).parent / 'data/sample.pdf'),
-                                      '-v', verbosity,
-                                      ])
+    with runner.isolated_filesystem():
+        result = runner.invoke(
+            main,
+            [
+                "info",
+                str(Path(__file__).parent / "data/sample.pdf"),
+                "-v",
+                verbosity,
+            ],
+        )
+
+        assert result.output.startswith("Filename: ")
         assert result.exit_code == 0
+
+
 #
 # @pytest.mark.parametrize("verbosity", [0, 1])
 # def test_split_range1(verbosity):

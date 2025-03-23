@@ -1,8 +1,13 @@
-from . import split
-from . import join
-from . import extract
-from . import info
-from . import rotate
-from . import encrypt
-from . import decrypt
-from . import watermark
+from . import decrypt, encrypt, extract, info, join, ocr, rotate, split, watermark
+
+__all__ = [
+    "decrypt",
+    "encrypt",
+    "extract",
+    "info",
+    "join",
+    "ocr",
+    "rotate",
+    "split",
+    "watermark",
+]

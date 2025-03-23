@@ -6,10 +6,10 @@ It is able to split,join,reorder,extract pdf.
 
     $ pdfcli --help
     Usage: pdfcli [OPTIONS] COMMAND [ARGS]...
-    
+
     Options:
       --help  Show this message and exit.
-    
+
     Commands:
       decrypt    decrypt pdf
       encrypt    encrypt pdf
@@ -25,8 +25,7 @@ It is able to split,join,reorder,extract pdf.
 Extract pages 1, and from 5 to 9 one file for page
 
     pdfcli split source.pdf -p 1,5-9
-    
-Create a new pdf using pages 1, and from 5 to 9 
+
+Create a new pdf using pages 1, and from 5 to 9
 
     pdfcli extract source.pdf  -p 1,5-9 -o new.pdf
-
