@@ -15,24 +15,27 @@ It is able to split,join,reorder,extract text .
     Usage: pdf [OPTIONS] COMMAND [ARGS]...
 
     Options:
-      --help  Show this message and exit.
+      --version
+      --help     Show this message and exit.
 
     Commands:
-      decrypt    decrypt pdf
-      encrypt    encrypt pdf
+      decrypt    Remove password protection from PDF files.
+      encrypt    Add password protection to PDF files.
       extract    extract one or multiple pages and build a new document.
-      info       dump pdf informations.
-      join       join multiple pdf together in a single file
-      rotate     rotate selected pages Rotate selected pages and outputs in new...
-      split      split pdf into single page file
-      watermark  use first page of pdf and add it as watermark to other
-                 document...
+      info       dump pdf information.
+      join       join multiple pdf together in a single file.
+      ocr        Extract text from PDF using OCR
+      rotate     Rotate selected pages and outputs in new pdf
+      split      split pdf into multiple single page file.
+      watermark  use first page of pdf and add it as watermark to other document
+
+
 ### Examples
 
 Extract pages 1, and from 5 to 9 one file for page
 
-    pdfcli split source.pdf -p 1,5-9
+    pdf split source.pdf -p 1,5-9
 
 Create a new pdf using pages 1, and from 5 to 9
 
-    pdfcli extract source.pdf  -p 1,5-9 -o new.pdf
+    pdf extract source.pdf  -p 1,5-9 -o new.pdf
