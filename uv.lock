@@ -665,14 +665,13 @@ wheels = [
 
 [[package]]
 name = "pdf-cli"
-version = "0.2.1.dev6+g8c79032.d20250331"
+version = "0.2.1.dev7+gcccd0bb.d20250331"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
     { name = "cryptography" },
     { name = "pypdf" },
     { name = "pytesseract" },
-    { name = "tesseract" },
 ]
 
 [package.dev-dependencies]
@@ -698,7 +697,6 @@ requires-dist = [
     { name = "cryptography", specifier = ">=3.1" },
     { name = "pypdf" },
     { name = "pytesseract", specifier = ">=0.3.13" },
-    { name = "tesseract", specifier = ">=0.1.3" },
 ]
 
 [package.metadata.requires-dev]
@@ -1070,12 +1068,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050 },
 ]
-
-[[package]]
-name = "tesseract"
-version = "0.1.3"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/8d/b7/c4fae9af5842f69d9c45bf1195a94aec090628535c102894552a7a7dbe6c/tesseract-0.1.3.tar.gz", hash = "sha256:4ab908f06ff15b60959ed0f200bddf8309ed02e6435ddc29445961cf8e3f5365", size = 45555135 }
 
 [[package]]
 name = "tomli"

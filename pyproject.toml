@@ -27,7 +27,6 @@ dependencies = [
   "cryptography>=3.1",
   "pypdf",
   "pytesseract>=0.3.13",
-  "tesseract>=0.1.3",
 ]
 urls.CI = "https://github.com/saxix/pdfcli/actions"
 urls.Homepage = "https://github.com/saxix/pdfcli"
