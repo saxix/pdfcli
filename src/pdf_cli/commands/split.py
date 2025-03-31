@@ -13,7 +13,7 @@ from pdf_cli.main import main
 @main.command()
 @click.argument("input_file", type=click.File("rb"))
 @click.option("-p", "--pages", default=None, type=Range, help="starting page to extract")
-@click.option("--format", "fmt", default="page-%02d.pdf", help="page filename pattern")
+@click.option("-f", "--format", "fmt", default="page-%02d.pdf", help="page filename pattern")
 @click.option("-d", "--destination", type=click.Path(exists=False), default=".")
 @click.option("-v", "--verbosity", type=int, default=0)
 def split(

@@ -24,7 +24,7 @@ It is able to split,join,reorder,extract text .
       extract    extract one or multiple pages and build a new document.
       info       dump pdf information.
       join       join multiple pdf together in a single file.
-      ocr        Extract text from PDF using OCR
+      ocr        Extract text from PDF using OCR (requires tesseract)
       rotate     Rotate selected pages and outputs in new pdf
       split      split pdf into multiple single page file.
       watermark  use first page of pdf and add it as watermark to other document

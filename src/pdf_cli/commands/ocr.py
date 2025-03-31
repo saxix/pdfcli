@@ -8,6 +8,7 @@ import click
 import pytesseract
 from PIL import Image
 from pypdf import PageObject, PdfReader
+from pytesseract import TesseractNotFoundError
 
 from pdf_cli.commands.utils import Range
 from pdf_cli.main import main
@@ -17,7 +18,7 @@ from pdf_cli.main import main
 @click.argument("input_file", type=click.File("rb"))
 @click.option("-p", "--pages", default=None, type=Range, help="starting page to extract")
 @click.option("-o", "--output", type=click.File("wb"), required=False, help="output file")
-@click.option("-v", "--verbosity", type=int, default=0)
+@click.option("-v", "--verbosity", type=int, default=1)
 @click.option("-r", "--rotate", type=click.Choice(["left", "right", "inverted"]), default="left")
 def ocr(
     input_file: click.File,
@@ -48,6 +49,12 @@ def ocr(
         extracted_text += page.extract_text()
         for img in page.images:
             image = Image.open(io.BytesIO(img.data))
-            extracted_text += pytesseract.image_to_string(image)
+            try:
+                extracted_text += pytesseract.image_to_string(image)
+            except TesseractNotFoundError:
+                click.secho("Tesseract not found", fg="red")
+                return
 
     output.write(extracted_text.encode("utf-8"))  # type: ignore[union-attr]
+    if verbosity >= 1:
+        click.secho(f"\nContent extracted to {output.name}")
