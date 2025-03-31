@@ -5,6 +5,7 @@
 !.travis.yml
 !.pre-commit-config.yaml
 !tests/.coveragerc
+coverage.xml
 dist/
 src/pdf_cli.egg-info
 src/pdf_cli/version.py
