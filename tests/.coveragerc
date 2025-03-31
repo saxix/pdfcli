@@ -1,0 +1,16 @@
+[run]
+branch = True
+source = pdf_cli
+
+[report]
+# Regexes for lines to exclude from consideration
+exclude_lines =
+    # Have to re-enable the standard pragma
+    pragma: no cover
+    pragma: no-cover
+    if __name__ == "__main__":
+    if TYPE_CHECKING:
+
+
+[html]
+directory = ./~build/coverage

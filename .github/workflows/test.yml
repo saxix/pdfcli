@@ -10,33 +10,33 @@ on:
         -   cron: "0 8 * * *"
 
 jobs:
-    changes:
-        runs-on: ubuntu-latest
-        timeout-minutes: 1
-        defaults:
-            run:
-                shell: bash
-        outputs:
-            run_tests: ${{ steps.changes.outputs.run_tests }}
-        steps:
-            -   name: Checkout code
-                uses: actions/checkout@v4
-            -   id: changes
-                name: Check for file changes
-                uses: dorny/paths-filter@0bc4621a3135347011ad047f9ecf449bf72ce2bd # v3.0.0
-                with:
-                    base: ${{ github.ref }}
-                    token: ${{ github.token }}
-                    filters: .github/file-filters.yml
+#    changes:
+#        runs-on: ubuntu-latest
+#        timeout-minutes: 1
+#        defaults:
+#            run:
+#                shell: bash
+#        outputs:
+#            run_tests: ${{ steps.changes.outputs.run_tests }}
+#        steps:
+#            -   name: Checkout code
+#                uses: actions/checkout@v4
+#            -   id: changes
+#                name: Check for file changes
+#                uses: dorny/paths-filter@0bc4621a3135347011ad047f9ecf449bf72ce2bd # v3.0.0
+#                with:
+#                    base: ${{ github.ref }}
+#                    token: ${{ github.token }}
+#                    filters: .github/file-filters.yml
 
     lint:
-        needs: [ changes ]
-        if: needs.changes.outputs.run_tests == 'true'
+#        needs: [ changes ]
+#        if: needs.changes.outputs.run_tests == 'true'
 
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            -   uses: actions/setup-python@v2
+            -   uses: actions/setup-python@v5
 
             -   name: Install dependencies
                 run: |
@@ -48,7 +48,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v4
-            -   uses: actions/setup-python@v2
+            -   uses: actions/setup-python@v5
 
             -   name: Install dependencies
                 run: |
@@ -57,12 +57,8 @@ jobs:
                 run: |
                     tox -e pkg_meta
     test:
-        needs: [ changes ]
-        if: needs.changes.outputs.run_tests == 'true'
-        services:
-            redis:
-                image: redis
-
+#        needs: [ changes ]
+#        if: needs.changes.outputs.run_tests == 'true'
         runs-on: ubuntu-latest
         strategy:
             fail-fast: false

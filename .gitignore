@@ -4,9 +4,10 @@
 !.gitignore
 !.travis.yml
 !.pre-commit-config.yaml
+!tests/.coveragerc
 dist/
 src/pdf_cli.egg-info
-src/version.py
+src/pdf_cli/version.py
 *.pyc
 tests/data/ocr.txt
 tests/data/sample.rotated.pdf
