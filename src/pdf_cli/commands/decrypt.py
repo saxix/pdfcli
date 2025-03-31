@@ -12,11 +12,7 @@ from pdf_cli.main import main
 @click.option("-v", "--verbosity", type=int, default=0)
 @click.option("-p", "--password", type=str)
 def decrypt(input_file: click.File, output: click.File, password: str, verbosity: int, **kwargs: Any) -> None:  # noqa: ARG001
-    """decrypt pdf.
-
-    pdfcli decrypt crypted.pdf -o clear.pdf -p password
-
-    """
+    """Remove password protection from PDF files."""
     source = PdfReader(input_file)  # type: ignore[arg-type]
     source.decrypt(password)
     output_pdf = PdfWriter()

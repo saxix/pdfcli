@@ -1,0 +1,23 @@
+site_name: Pdf CLI
+docs_dir: docs
+repo_url: https://github.com/saxix/pdfcli
+site_dir: ./~build/docs
+
+exclude_docs: |
+    _docs/*
+    _hooks/*
+    _includes/*
+    _scripts/*
+    ~*
+
+markdown_extensions:
+  - mkdocs-click
+  - admonition
+  - attr_list
+
+theme:
+    name: "material"
+    highlightjs: true
+
+watch:
+    - src/

@@ -10,11 +10,7 @@ from pdf_cli.main import main
 @click.argument("input_file", type=click.File("rb"))
 @click.option("-v", "--verbosity", type=int, default=0)
 def info(input_file: click.File, **kwargs: Any) -> None:  # noqa: ARG001
-    """dump pdf informations.
-
-    pdfcli info source.pdf
-
-    """
+    """dump pdf information."""
 
     pdf = PdfReader(input_file)  # type: ignore[arg-type]
     information: dict[str, Any] = pdf._info or {}

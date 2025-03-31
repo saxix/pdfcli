@@ -12,11 +12,7 @@ from pdf_cli.main import main
 @click.option("-o", "--output", type=click.File("wb"), required=True)
 @click.option("-v", "--verbosity", type=int, default=0)
 def watermark(input_file: click.File, watermark: click.File, output: click.File, **kwargs: Any) -> None:  # noqa: ARG001
-    """use first page of pdf and add it as watermark to other document
-
-    es. pdfcli watermark wm.pdf source.pdf -o final.pdf
-
-    """
+    """use first page of pdf and add it as watermark to other document"""
     wm = PdfReader(watermark)  # type: ignore[arg-type]
     watermark_page = wm.pages[0]
 

@@ -22,11 +22,7 @@ def split(
     verbosity: int,
     **kwargs: Any,  # noqa: ARG001
 ) -> None:
-    """split pdf into single page file.
-
-    pdfcli split document.pdf --format page-%02d.pd -p 1,10-20
-
-    """
+    """split pdf into multiple single page file."""
     source = PdfReader(input_file)  # type: ignore[arg-type]
     if pages is None:
         pages = Range(f"1-{len(source.pages)}", None)

@@ -24,10 +24,7 @@ def rotate(
     rotate: str,
     **kwargs: Any,  # noqa: ARG001
 ) -> None:
-    """rotate selected pages
-
-    Rotate selected pages and outputs in new pdf
-    """
+    """Rotate selected pages and outputs in new pdf"""
     source = PdfReader(input_file)  # type: ignore[arg-type]
 
     angle = ANGLES.get(rotate) or 0

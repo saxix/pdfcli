@@ -11,11 +11,7 @@ from pdf_cli.main import main
 @click.option("-o", "--output", type=click.File("wb"), required=True)
 @click.option("-v", "--verbosity", type=int, default=0)
 def join(inputs: list[str], output: click.File, verbosity: int, **kwargs: Any) -> None:  # noqa: ARG001
-    """join multiple pdf together in a single file.
-
-    pdfcli join files*.pdf -o joined.pdf
-
-    """
+    """join multiple pdf together in a single file."""
 
     out = PdfWriter()
 

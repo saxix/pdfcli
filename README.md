@@ -12,7 +12,7 @@
 
 pdfcli is a command line utility to work with pdf.
 
-It is able to split,join,reorder,extract pdf.
+It is able to split,join,reorder,extract text .
 
     $ pdf --help
     Usage: pdf [OPTIONS] COMMAND [ARGS]...
