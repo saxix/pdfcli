@@ -2,11 +2,9 @@
 
 [![Pypi](https://badge.fury.io/py/pdfcli.svg)](https://badge.fury.io/py/pdfcli)
 [![Test](https://github.com/saxix/pdfcli/actions/workflows/test.yml/badge.svg)](https://github.com/saxix/pdfcli/actions/workflows/test.yml)
-
-[//]: # ([![coverage]&#40;https://codecov.io/github/saxix/pdfcli/coverage.svg?branch=develop&#41;]&#40;https://codecov.io/github/saxix/pdfcli?branch=develop&#41;)
-[//]: # ([![Documentation]&#40;https://github.com/saxix/pdfcli/actions/workflows/docs.yml/badge.svg&#41;]&#40;https://saxix.github.io/pdfcli/&#41;)
-[//]: # ([![Django]&#40;https://img.shields.io/pypi/frameworkversions/django/pdfcli&#41;]&#40;https://pypi.org/project/pdfcli/&#41;)
-[//]: # ([![Supported Python versions]&#40;https://img.shields.io/pypi/pyversions/pdfcli.svg&#41;]&#40;https://pypi.org/project/pdfcli/&#41;)
+[![coverage](https://codecov.io/github/saxix/pdfcli/coverage.svg?branch=develop)](https://codecov.io/github/saxix/pdfcli?branch=develop)
+[![Documentation](https://github.com/saxix/pdfcli/actions/workflows/docs.yml/badge.svg)](https://saxix.github.io/pdfcli/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/pdfcli.svg)](https://pypi.org/project/pdfcli/)
 
 
 pdfcli is a command line utility to work with pdf.
