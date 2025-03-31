@@ -1,10 +1,10 @@
-# pdfcli
+# pdf-cli
 
 [![Pypi](https://badge.fury.io/py/pdfcli.svg)](https://badge.fury.io/py/pdfcli)
 [![Test](https://github.com/saxix/pdfcli/actions/workflows/test.yml/badge.svg)](https://github.com/saxix/pdfcli/actions/workflows/test.yml)
 [![coverage](https://codecov.io/github/saxix/pdfcli/coverage.svg?branch=develop)](https://codecov.io/github/saxix/pdfcli?branch=develop)
 [![Documentation](https://github.com/saxix/pdfcli/actions/workflows/docs.yml/badge.svg)](https://saxix.github.io/pdfcli/)
-[![Supported Python versions](https://img.shields.io/pypi/pyversions/pdfcli.svg)](https://pypi.org/project/pdfcli/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/pdf-cli.svg)](https://pypi.org/project/pdf-cli/)
 
 
 pdfcli is a command line utility to work with pdf.
