@@ -665,7 +665,7 @@ wheels = [
 
 [[package]]
 name = "pdf-cli"
-version = "0.2.1.dev4+gb8e7421.d20250331"
+version = "0.2.1.dev6+g8c79032.d20250331"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
