@@ -6,8 +6,8 @@ from typing import Any
 import click
 from pypdf import PageObject, PdfReader, PdfWriter
 
-from pdf_cli.commands.utils import Range
 from pdf_cli.main import main
+from pdf_cli.utils import Console, Range
 
 ANGLES = {"left": -90, "right": 90, "inverted": 180}
 
@@ -27,6 +27,8 @@ def rotate(
     **kwargs: Any,  # noqa: ARG001
 ) -> None:
     """Rotate selected pages and outputs in new pdf"""
+    console = Console(verbosity)
+
     source = PdfReader(input_file)  # type: ignore[arg-type]
 
     angle = ANGLES.get(rotate) or 0
@@ -37,10 +39,7 @@ def rotate(
     selection = []
     for page_num in pages:
         real_page = page_num - 1
-        if verbosity >= 2:
-            click.echo(f"Rotating page {page_num}")
-        elif verbosity >= 1:
-            click.echo(".", nl=False)
+        console.echo(".", f"Rotating page {page_num}")
         page: PageObject = source.pages[real_page]
         page.rotation = angle
         selection.append(page)
@@ -49,6 +48,5 @@ def rotate(
     for page in selection:
         output_pdf.add_page(page)
 
-    if verbosity >= 1:
-        click.echo(f"Writing {output.name}")
+    console.info(f"Writing {output.name}")
     output_pdf.write(output)  # type: ignore[arg-type]

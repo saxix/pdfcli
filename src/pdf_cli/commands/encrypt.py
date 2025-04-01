@@ -4,6 +4,7 @@ import click
 from pypdf import PdfReader, PdfWriter
 
 from pdf_cli.main import main
+from pdf_cli.utils import Console
 
 
 @main.command()
@@ -31,14 +32,15 @@ def encrypt(
     The encryption algorithm used for protecting the file is configurable.
 
     """
+    console = Console(verbosity)
 
     source = PdfReader(input_file)  # type: ignore[arg-type]
     output_pdf = PdfWriter()
     for page in source.pages:
         output_pdf.add_page(page)
+        console.debug(".")
+    console.debug("")
 
     output_pdf.encrypt(user_password=password, algorithm=algorithm)
-
-    if verbosity >= 1:
-        click.echo(f"Writing {output.name}")
+    console.info(f"Writing {output.name}")
     output_pdf.write(output)  # type: ignore[arg-type]

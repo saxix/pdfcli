@@ -1,10 +1,13 @@
 import logging
 
 import click
+from cloup import group, option
+
+from .utils import formatter_settings
 
 
-@click.group(invoke_without_command=True)
-@click.option("--version", "show_version", is_flag=True, default=False)
+@group(invoke_without_command=True, formatter_settings=formatter_settings)
+@option("--version", "show_version", is_flag=True, default=False)
 def main(show_version: bool) -> None:
     logger = logging.getLogger("pypdf")
     logger.setLevel(logging.ERROR)
@@ -17,4 +20,4 @@ def main(show_version: bool) -> None:
 from . import commands  # noqa: E402 F401
 
 if __name__ == "__main__":
-    main()
+    main(prog_name="pdf")

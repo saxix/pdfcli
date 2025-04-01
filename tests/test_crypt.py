@@ -6,7 +6,7 @@ from click.testing import CliRunner
 from pdf_cli.main import main
 
 
-@pytest.mark.parametrize("verbosity", [0, 1])
+@pytest.mark.parametrize("verbosity", [0, 1, 2, 3])
 def test_encryption_all(verbosity):
     runner = CliRunner()
     with runner.isolated_filesystem() as dir:

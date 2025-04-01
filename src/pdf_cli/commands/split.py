@@ -6,8 +6,8 @@ from typing import Any
 import click
 from pypdf import PdfReader, PdfWriter
 
-from pdf_cli.commands.utils import Range
 from pdf_cli.main import main
+from pdf_cli.utils import Console, Range
 
 
 @main.command()
@@ -25,6 +25,7 @@ def split(
     **kwargs: Any,  # noqa: ARG001
 ) -> None:
     """split pdf into multiple single page file."""
+    console = Console(verbosity)
     source = PdfReader(input_file)  # type: ignore[arg-type]
     if pages is None:
         pages = Range(f"1-{len(source.pages)}", None)
@@ -35,10 +36,7 @@ def split(
 
     for page_num in pages:
         real_page = page_num - 1
-        if verbosity >= 2:
-            click.echo(f"Extracting page {page_num}")
-        elif verbosity >= 1:
-            click.echo(".", nl=False)
+        console.echo(".", f"Extracting page {page_num}")
         # due to a bug PyPDF4 file need to be reopened
         source = PdfReader(input_file)  # type: ignore[arg-type]
         dest_file = (to_dir / Path(fmt % page_num)).absolute()
@@ -47,3 +45,4 @@ def split(
         output_pdf.add_page(page)
         with dest_file.open("wb") as f:
             output_pdf.write(f)
+            console.info(f"Writing {output_pdf}")

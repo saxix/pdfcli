@@ -7,7 +7,7 @@ from pdf_cli.main import main
 
 
 @pytest.mark.parametrize("pages", ["1", "1-2", "1,2"])
-@pytest.mark.parametrize("verbosity", [0, 1, 2])
+@pytest.mark.parametrize("verbosity", [0, 1, 2, 3])
 def test_extract_all(verbosity, pages):
     runner = CliRunner()
     with runner.isolated_filesystem() as dir:

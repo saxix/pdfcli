@@ -6,6 +6,7 @@ import click
 from pypdf import PdfReader, PdfWriter
 
 from pdf_cli.main import main
+from pdf_cli.utils import Console
 
 
 @main.command()
@@ -16,14 +17,13 @@ def join(inputs: list[str], output: click.File, verbosity: int, **kwargs: Any) -
     """join multiple pdf together in a single file."""
 
     out = PdfWriter()
+    console = Console(verbosity)
 
     for input_file in inputs:
         source = PdfReader(input_file)
-        if verbosity >= 1:
-            click.echo(f"Adding {input_file}")
+        console.echo(".", f"Adding page {input_file}")
         for page_num in range(len(source.pages)):
             out.add_page(source.pages[page_num])
 
     out.write(output)  # type: ignore[arg-type]
-    if verbosity >= 1:
-        click.echo(f"Writing {output.name}")
+    console.info(f"Writing {output.name}")
